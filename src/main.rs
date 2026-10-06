@@ -19,12 +19,11 @@ async fn main() {
 
     
     let db_pool = MySqlPoolOptions::new().max_connections(16).connect(&database_url).await.expect("Can't connect to database");
+    
     let api = Router::new().route("/", get(|| async { "Hello, World! this is a test" }));
 
     let listener = TcpListener::bind(server_address).await.expect("Could not create listener");
 
-    print!("listening on {}", listener.local_addr().unwrap());
-    print!("hello");
 
     axum::serve(listener, api).await.expect("Could not start the application because of an error")
 
