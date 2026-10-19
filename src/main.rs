@@ -18,11 +18,21 @@ async fn main() {
     let database_url = std::env::var("DATABASE_URL").expect("database url not found");
 
     
-    let db_pool = MySqlPoolOptions::new().max_connections(16).connect(&database_url).await.expect("Can't connect to database");
-    
+    let pool = MySqlPoolOptions::new().max_connections(16).connect(&database_url).await.expect("Can't connect to database");
+    sqlx::migrate!().run(&pool).await.expect("Migrations failed");
+
+
+
     let api = Router::new().route("/", get(|| async { "Hello, World! this is a test" }));
 
+    let router = axum::Router::new()
+    .nest("/crud/v1", router);
+
+
     let listener = TcpListener::bind(server_address).await.expect("Could not create listener");
+
+
+
 
 
     axum::serve(listener, api).await.expect("Could not start the application because of an error")
