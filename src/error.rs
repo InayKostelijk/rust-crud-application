@@ -11,3 +11,13 @@ pub enum Error {
     #[error("bad request:")]
     BadRequest(String)
 }
+
+impl Error {
+    pub fn status_code(&self) -> StatusCode{
+        match self {
+            Self::InternalServer => StatusCode::INTERNAL_SERVER_ERROR,
+            Self::NotFound => StatusCode::NOT_FOUND,
+            Self::BadRequest(_) => StatusCode::BAD_REQUEST,
+        }
+    }
+}
