@@ -10,6 +10,15 @@ use serde::{Serialize, Deserialize};
 use serde_json::json;
 
 use sqlx::{mysql:: MySqlPoolOptions, MySqlPool};
+
+
+
+mod v1;
+mod state;
+mod test;
+mod util;
+mod errors;
+
 #[warn(unused_variables)]
 #[tokio::main]
 async fn main() {
