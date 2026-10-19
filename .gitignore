@@ -2,3 +2,4 @@
 .env
 debug
 **/*.rs.bk
+migrations/0001_expenses_table
