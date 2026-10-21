@@ -12,12 +12,11 @@ use serde_json::json;
 use sqlx::{mysql:: MySqlPoolOptions, MySqlPool};
 
 
-
 mod v1;
 mod state;
 mod test;
 mod util;
-mod errors;
+mod error;
 
 #[warn(unused_variables)]
 #[tokio::main]
@@ -33,9 +32,9 @@ async fn main() {
 
 
     let api = Router::new().route("/", get(|| async { "Hello, World! this is a test" }));
-
-    let router = axum::Router::new()
-    .nest("/crud/v1", router);
+    // let v1_router = v1::
+    // let router = axum::Router::new()
+    // .nest("/crud/v1", v1::router());
 
 
     let listener = TcpListener::bind(server_address).await.expect("Could not create listener");
