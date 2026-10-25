@@ -1,11 +1,8 @@
-CREATE TABLE IF NOT EXISTS expenses (
+CREATE TABLE IF NOT EXISTS ordered_list (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(255) NOT NULL,
-    amount INT NOT NULL
-);
+    title varchar(255) NOT NULL ,
+    min_length INT NOT NULL ,
+    max_length INT NOT NULL ,
+    allowed_types ENUM('ARTICLE') NOT NULL
 
-CREATE TABLE IF NOT EXISTS users (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL ,
-    email VARCHAR(255) NOT NULL
-    )
+);

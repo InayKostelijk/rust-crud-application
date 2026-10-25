@@ -7,9 +7,9 @@ use super::{dto::ExpensesOutgoing,controller };
 
 
     pub fn router() -> Router<u32> {
-        Router::new().route("/ordered-lists", get(get_all_lists)).with_state(5)
+        Router::new().route("/ordered-lists", get(get_all_ordered_list())).with_state(5)
     }
-    async fn get_all_lists (state: State<u32>) -> Result<Json<Vec<ExpensesOutgoing>>, Error> {
+    async fn get_all_ordered_list(state: State<u32>) -> Result<Json<Vec<ExpensesOutgoing>>, Error> {
         let expenses= controller::get_all_expenses().await?;
         Ok(Json(expenses))
     }
