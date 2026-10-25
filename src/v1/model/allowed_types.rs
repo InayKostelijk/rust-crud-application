@@ -1,3 +1,6 @@
-pub enum AllowedTypes{
-    ARTICLE
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize)]
+pub enum AllowedTypes {
+    ARTICLE,
 }
