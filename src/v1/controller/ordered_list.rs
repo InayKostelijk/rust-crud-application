@@ -7,14 +7,14 @@ use crate::{
     }
 };
 
-    pub async fn get_all_ordered_list(expense_repository: impl OrderedListRepository) -> Result<Vec<ExpensesOutgoing>, Error>   {
-        let expenses = expense_repository.get_all_ordered_lists().await?;
-        Ok(ExpensesOutgoing::from_models(expenses))
+    pub async fn get_all_ordered_list(ordered_list_repository: &dyn OrderedListRepository,) -> Result<Vec<ExpensesOutgoing>, Error>   {
+        let ordered_list = ordered_list_repository.get_all_ordered_lists().await?;
+        Ok(ExpensesOutgoing::from_models(ordered_list))
     }
 
 
 impl ExpensesOutgoing {
-    pub fn from_models(expenses: Vec<OrderedList>) -> Vec<Self> {
-        expenses.into_iter().map(Self::from_model).collect()
+    pub fn from_models(ordered_list: Vec<OrderedList>) -> Vec<Self> {
+        ordered_list.into_iter().map(Self::from_model).collect()
     }
 }
