@@ -31,10 +31,8 @@ async fn main() {
 
 
 
-    let api = Router::new().route("/", get(|| async { "Hello, World! this is a test" }));
-    // let v1_router = v1::
-    // let router = axum::Router::new()
-    // .nest("/crud/v1", v1::router());
+    let state = state::State::new(pool);
+    let api = Router::new().nest("api/v1", v1::routes::router()).with_state(state);
 
 
     let listener = TcpListener::bind(server_address).await.expect("Could not create listener");
