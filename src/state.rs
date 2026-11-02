@@ -27,9 +27,7 @@ impl State {
 
 
         Self(Arc::new(StateInner {
-
-
-            ordered_list_repository: Arc::new(ordered_list_repository) 
+            ordered_list_repository: Arc::new(ordered_list_repository)
         }))
     }
 }
